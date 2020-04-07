@@ -7,7 +7,7 @@ Terraform module which creates a name for infrastructure resources that follows
 ```hcl
 # Create a name for the EKS cluster
 module "eks_name" {
-  source = "terraform-aws-name"
+  source = "git::https://github.com/agiwalpooja20/Hello?ref=v1.0.0"
 
   providers {
     random = "random"
