@@ -10,7 +10,7 @@
       <threadcount>1</threadcount>
     </dispatch>
     <executionEnabled>true</executionEnabled>
-    <id>926d0a5d-d789-431a-b530-5c4ca221c75a</id>
+    <id>5a103fbf-d076-4d2b-ac27-04b59d3a66a2</id>
     <loglevel>INFO</loglevel>
     <name>Happy Tuesday</name>
     <nodeFilterEditable>false</nodeFilterEditable>
@@ -24,6 +24,6 @@
         <exec>uname -r</exec>
       </command>
     </sequence>
-    <uuid>926d0a5d-d789-431a-b530-5c4ca221c75a</uuid>
+    <uuid>5a103fbf-d076-4d2b-ac27-04b59d3a66a2</uuid>
   </job>
 </joblist>
