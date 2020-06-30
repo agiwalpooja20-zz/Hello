@@ -12,7 +12,7 @@
     <executionEnabled>true</executionEnabled>
     <id>5a103fbf-d076-4d2b-ac27-04b59d3a66a2</id>
     <loglevel>INFO</loglevel>
-    <name>Happy Tuesday WEdnesday</name>
+    <name>Happy Tuesday</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <nodefilters>
       <filter>.*</filter>
