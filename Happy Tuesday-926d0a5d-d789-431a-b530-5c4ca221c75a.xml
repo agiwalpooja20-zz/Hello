@@ -21,7 +21,7 @@
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
-        <exec>uname -r</exec>
+        <exec>ls -lrth</exec>
       </command>
     </sequence>
     <uuid>5a103fbf-d076-4d2b-ac27-04b59d3a66a2</uuid>
