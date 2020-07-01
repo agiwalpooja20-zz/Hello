@@ -13,6 +13,9 @@
         <description>get current working directory</description>
         <exec>pwd</exec>
       </command>
+      <command>
+        <exec>whoami</exec>
+      </command>
     </sequence>
     <uuid>2118ea1f-1aa6-419d-8bd0-30b37638c3e2</uuid>
   </job>
