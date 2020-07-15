@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>nodes</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>4e308274-543e-49f7-a330-425e9403f440</id>
+    <loglevel>INFO</loglevel>
+    <name>pwd</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>pwd</exec>
+      </command>
+    </sequence>
+    <uuid>4e308274-543e-49f7-a330-425e9403f440</uuid>
+  </job>
+</joblist>
