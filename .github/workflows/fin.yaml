@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-    path:
+    paths:
       - financials-deployment.yaml
 jobs:
   financials_deployment:
@@ -19,11 +19,11 @@ jobs:
           yq --version
       - name: display
         run: |
-          array=$(yq r fin.yaml *.deployTo | sed -e "s/- //")
+          array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
           deployTo=($array)
-          array=$(yq r fin.yaml *.copyAllReleases | sed -e "s/- //")
+          array=$(yq r ffinancials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
           copyAllReleases=($array)
-          array=$(yq r fin.yaml *.excludeDeploy | sed -e "s/- //")
+          array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
           excludeDeploy=($array)
           echo $deployTo $copyAllReleases $excludeDeploy
           
