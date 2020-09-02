@@ -1,0 +1,11 @@
+- releaseVersion: release-2020-02-02
+  deployTo:
+    - mumbai
+    - pune
+    - thane
+  excludeDeploy:
+    - sanfrancisco
+    - dallas
+  copyAllReleases:
+    - newcustomer1
+    - newcustomer2
