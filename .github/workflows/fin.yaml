@@ -43,7 +43,7 @@ jobs:
     #  matrix: ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
     steps:
       - name: Testing final
-        run: echo ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
+        run: echo ${{needs.finanicals_deployment.outputs.DEPLOYTO}}
           
           
           
