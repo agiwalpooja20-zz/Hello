@@ -36,4 +36,4 @@ jobs:
     runs-on: ubuntu-18.04
     needs: financials_deployment
     steps:
-      - run: echo ${{ needs.finanicals_deployment.outputs.matrix }}
+      - run: echo ${{ needs.finanicals_deployment.outputs.matrix[@] }}
