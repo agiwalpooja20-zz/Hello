@@ -3,6 +3,7 @@
     - mumbai
     - pune
     - thane
+    - ichi
   excludeDeploy:
     - sanfrancisco
     - dallas
