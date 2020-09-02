@@ -9,7 +9,7 @@ jobs:
   financials_deployment:
     runs-on: ubuntu-18.04
     outputs: 
-        DEPLOYTO: ${{ steps.step3.outputs.DEPLOYTO }}
+        DEPLOYTO: ${{ steps.Deploy.outputs.DEPLOYTO }}
     steps:
       - name: Checkout deployment code
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
           excludeDeploy=($array)
           echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
         
-      - name: Deploy 
+      - id: Deploy 
         run:  echo ::set-env name=DEPLOYTO::${deployTo[@]}        
       - name: Test
         run: |
