@@ -39,11 +39,11 @@ jobs:
   deployment:
     needs: financials_deployment
     runs-on: ubuntu-18.04
-    strategy:
-      matrix: ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
+   # strategy:
+    #  matrix: ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
     steps:
       - name: Testing final
-        run: echo ${{ matrix }}
+        run: echo ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
           
           
           
