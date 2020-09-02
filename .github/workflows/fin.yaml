@@ -14,5 +14,5 @@ jobs:
       - name: display
         run: |
           pwd
-          cat Hello/Hello/financials-deployment.yaml
+          cat financials-deployment.yaml
           
