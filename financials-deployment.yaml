@@ -4,7 +4,6 @@
     - pune
     - thane
     - ichi
-    - wakad
   excludeDeploy:
     - sanfrancisco
     - dallas
