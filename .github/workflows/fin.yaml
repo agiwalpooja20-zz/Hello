@@ -11,3 +11,5 @@ jobs:
     steps:
       - name: Checkout deployment code
         uses: actions/checkout@v2
+      - name: display
+        run: cat Hello/financials-deployment.yaml
