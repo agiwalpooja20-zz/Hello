@@ -3,11 +3,13 @@ on:
   push:
     branches:
       - master
-    paths:
-      - financials-deployment.yaml
+    #paths:
+     # - financials-deployment.yaml
 jobs:
   financials_deployment:
     runs-on: ubuntu-18.04
+    outputs: 
+        DEPLOYTO: ${{ steps.step3.outputs.DEPLOYTO }}
     steps:
       - name: Checkout deployment code
         uses: actions/checkout@v2
@@ -21,16 +23,28 @@ jobs:
         run: |
           array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
           deployTo=($array)
-          echo ::set-env name=DEPLOYTO::${deployTo[@]}
+
           array=$(yq r financials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
           copyAllReleases=($array)
           array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
           excludeDeploy=($array)
           echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
-          
+        
+      - name: Deploy 
+        run:  echo ::set-env name=DEPLOYTO::${deployTo[@]}        
       - name: Test
         run: |
           for i in $DEPLOYTO ; do echo $i\n ;done
+          
+  deployment:
+    needs: financials_deployment
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix: 
+        city: ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
+    steps:
+      - name: Testing final
+        run: echo ${{ matrix.city }}
           
           
           
