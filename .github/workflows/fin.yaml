@@ -11,8 +11,21 @@ jobs:
     steps:
       - name: Checkout deployment code
         uses: actions/checkout@v2
+      - name: Install yq
+        run: |
+          sudo add-apt-repository ppa:rmescandon/yq
+          sudo apt update
+          sudo apt install yq -y
+          yq --version
       - name: display
         run: |
-          pwd
-          cat financials-deployment.yaml
+          array=$(yq r fin.yaml *.deployTo | sed -e "s/- //")
+          deployTo=($array)
+          array=$(yq r fin.yaml *.copyAllReleases | sed -e "s/- //")
+          copyAllReleases=($array)
+          array=$(yq r fin.yaml *.excludeDeploy | sed -e "s/- //")
+          excludeDeploy=($array)
+          echo $deployTo $copyAllReleases $excludeDeploy
+          
+          
           
