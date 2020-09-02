@@ -21,11 +21,16 @@ jobs:
         run: |
           array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
           deployTo=($array)
+          echo ::set-env name=DEPLOYTO::${deployTo[@]}
           array=$(yq r financials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
           copyAllReleases=($array)
           array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
           excludeDeploy=($array)
           echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
+          
+      - name: Test
+        run: |
+          for i in $DEPLOYTO ; do echo $i\n ;done
           
           
           
