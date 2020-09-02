@@ -36,6 +36,6 @@ jobs:
     runs-on: ubuntu-18.04
     needs: financials_deployment
     env: 
-      DEPLOYTO:  ${{ needs.finanicals_deployment.outputs.matrix }}
+      DEPLOYTO:  ${{ jobs.finanicals_deployment.steps.deploy.outputs.DEPLOYTO }}
     steps:
       - run: for i in $DEPLOYTO; do echo $i ;done
