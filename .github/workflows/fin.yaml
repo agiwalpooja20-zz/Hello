@@ -40,11 +40,10 @@ jobs:
     needs: financials_deployment
     runs-on: ubuntu-18.04
     strategy:
-      matrix: 
-        city: ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
+      matrix: ${{ needs.finanicals_deployment.outputs.DEPLOYTO }}
     steps:
       - name: Testing final
-        run: echo ${{ matrix.city }}
+        run: echo ${{ matrix }}
           
           
           
