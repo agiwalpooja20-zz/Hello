@@ -26,7 +26,7 @@ jobs:
           copyAllReleases=($array)
           array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
           excludeDeploy=($array)
-          echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
+         # echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
       - id: deploy 
         run: echo ::set-env name=DEPLOYTO::${deployTo[@]}
         
