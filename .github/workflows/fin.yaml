@@ -54,7 +54,7 @@ jobs:
   #      city: ${{fromJSON(needs.job1.outputs.output1)}}
   #      state: ${{fromJSON(needs.job1.outputs.output2)}}
   #  steps:
-    - run: echo ${{ matrix.city }} ${{matrix.state}}
+  #  - run: echo ${{ matrix.city }} ${{matrix.state}}
  # deployment:
   #  runs-on: ubuntu-18.04
    # needs: financials_deployment
