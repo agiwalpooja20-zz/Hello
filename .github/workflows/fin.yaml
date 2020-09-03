@@ -30,7 +30,7 @@ jobs:
           excludeDeploy=($array)
           echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}     
       - id: deploy 
-        run: echo "::set-output name=DEPLOYTO::${deployTo[@]}"
+        run: echo ::set-output name=DEPLOYTO::${deployTo[@]}
           
   deployment:
     runs-on: ubuntu-18.04
