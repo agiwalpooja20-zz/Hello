@@ -8,9 +8,8 @@ on:
 jobs:
   financials_deployment:
     runs-on: ubuntu-18.04
-    strategy: 
-      matrix: 
-        city: ${{ env.DEPLOYTO }}
+    outputs:
+      test:  ${{ steps.step4.outputs.test }}
     steps:
       - name: Checkout deployment code
         uses: actions/checkout@v2
@@ -31,9 +30,15 @@ jobs:
           echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
       - id: deploy 
         run: echo ::set-env name=DEPLOYTO::${deployTo[@]}
-      - name: Test
-        run: echo ${{ matrix.city }}
+      - name: steps4
+        run: echo "::set-output name=test::hello"
           
+  first:
+    runs-on: ubuntu-18.04
+    needs: [financials_deployment]
+    steps:
+      - name: first step
+        run: echo ${{ needs.financials_deployment.outputs.test }}
  # deployment:
   #  runs-on: ubuntu-18.04
    # needs: financials_deployment
