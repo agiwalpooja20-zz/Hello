@@ -43,9 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: job1
     strategy:
-      matrix: ${{toJSON(needs.job1.outputs.output1)}}
+      matrix: 
+        city: ${{fromJSON(needs.job1.outputs.output1)}}
     steps:
-    - run: echo ${{ matrix }} ${{needs.job1.outputs.output2}}
+    - run: echo ${{ matrix.city }} ${{needs.job1.outputs.output2}}
  # deployment:
   #  runs-on: ubuntu-18.04
    # needs: financials_deployment
