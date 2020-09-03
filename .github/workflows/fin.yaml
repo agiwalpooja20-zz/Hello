@@ -33,7 +33,8 @@ jobs:
       - id: step1
         run: |
           array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
-          echo ::set-output name=test::($array)
+          deployTo=($array)
+          echo ::set-output name=test::$(echo -n ${deployTo[@]})
           
       - id: step2
         run: echo "::set-output name=test::world"          
