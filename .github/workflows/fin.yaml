@@ -33,7 +33,7 @@ jobs:
         run: echo ::set-env name=DEPLOYTO::${deployTo[@]}
         
       - id: step1
-        run: echo "::set-output name=test::toJSON(${deployTo[@]})"
+        run: echo ::set-output name=test::toJSON(${deployTo[@]})
       - id: step2
         run: echo "::set-output name=test::world"          
         
