@@ -22,8 +22,6 @@ jobs:
           yq --version
       - name: display
         run: |
-          array=$(yq r financials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
-          copyAllReleases=($array)
           array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
           excludeDeploy=($array)
          # echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
@@ -37,7 +35,10 @@ jobs:
           echo ::set-output name=test::$(echo -n "${deployTo[@]} " | jq -cRs 'split(" ")[:-1]')
           
       - id: step2
-        run: echo "::set-output name=test::world"          
+        run: |
+          array=$(yq r financials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
+          copyAllReleases=($array)        
+          echo ::set-output name=test::$(echo -n "${copyAllReleases[@]} " | jq -cRs 'split(" ")[:-1]')
         
   job2:
     runs-on: ubuntu-latest
@@ -45,8 +46,9 @@ jobs:
     strategy:
       matrix: 
         city: ${{fromJSON(needs.job1.outputs.output1)}}
+        state: ${{fromJSON(needs.job1.outputs.output2)}}
     steps:
-    - run: echo ${{ matrix.city }} ${{needs.job1.outputs.output2}}
+    - run: echo ${{ matrix.city }} ${{matrix.state}}
  # deployment:
   #  runs-on: ubuntu-18.04
    # needs: financials_deployment
