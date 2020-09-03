@@ -30,12 +30,12 @@ jobs:
           excludeDeploy=($array)
           echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}     
       - id: deploy 
-        run: echo ::set-output name=DEPLOYTO::${deployTo[@]}        
+        run: echo "::set-output name=DEPLOYTO::${deployTo[@]}"
           
   deployment:
     runs-on: ubuntu-18.04
     needs: financials_deployment
     env: 
-      DEPLOYTO:  ${{ jobs.finanicals_deployment.steps.deploy.outputs.DEPLOYTO }}
+      DEPLOYTO:  ${{ needs.financials_deployment.outputs.matrix }}
     steps:
       - run: for i in $DEPLOYTO; do echo $i ;done
