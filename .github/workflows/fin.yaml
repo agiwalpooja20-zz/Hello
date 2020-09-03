@@ -8,8 +8,9 @@ on:
 jobs:
   financials_deployment:
     runs-on: ubuntu-18.04
-    outputs: 
-        matrix: ${{ steps.deploy.outputs.DEPLOYTO }}
+    strategy: 
+      matrix: 
+        city: ${{ env.DEPLOYTO }}
     steps:
       - name: Checkout deployment code
         uses: actions/checkout@v2
@@ -23,19 +24,20 @@ jobs:
         run: |
           array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
           deployTo=($array)
-
           array=$(yq r financials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
           copyAllReleases=($array)
           array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
           excludeDeploy=($array)
-          echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}     
+          echo ${deployTo[@]} ${copyAllReleases[@]} ${excludeDeploy[@]}
       - id: deploy 
-        run: echo ::set-output name=DEPLOYTO::${deployTo[@]}
+        run: echo ::set-env name=DEPLOYTO::${deployTo[@]}
+      - name: Test
+        run: echo ${{ matrix.city }}
           
-  deployment:
-    runs-on: ubuntu-18.04
-    needs: financials_deployment
+ # deployment:
+  #  runs-on: ubuntu-18.04
+   # needs: financials_deployment
     #env: 
     #  DEPLOYTO:  ${{ needs.financials_deployment.outputs.matrix }}
-    steps:
-      - run: echo ${{ needs.financials_deployment.outputs.matrix }}
+    #steps:
+     # - run: echo ${{ needs.financials_deployment.outputs.matrix }}
