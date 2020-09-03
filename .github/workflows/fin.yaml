@@ -33,7 +33,7 @@ jobs:
         run: echo ::set-env name=DEPLOYTO::${deployTo[@]}
         
       - id: step1
-        run: echo ::set-output name=test::$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
+        run: echo ::set-output name=test::($(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //"))
       - id: step2
         run: echo "::set-output name=test::world"          
         
