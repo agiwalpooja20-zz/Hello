@@ -22,8 +22,6 @@ jobs:
           yq --version
       - name: display
         run: |
-          array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
-          deployTo=($array)
           array=$(yq r financials-deployment.yaml *.copyAllReleases | sed -e "s/- //")
           copyAllReleases=($array)
           array=$(yq r financials-deployment.yaml *.excludeDeploy | sed -e "s/- //")
@@ -33,7 +31,10 @@ jobs:
         run: echo ::set-env name=DEPLOYTO::${deployTo[@]}
         
       - id: step1
-        run: echo ::set-output name=test::$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
+        run: |
+          array=$(yq r financials-deployment.yaml *.deployTo | sed -e "s/- //")
+          echo ::set-output name=test::($array)
+          
       - id: step2
         run: echo "::set-output name=test::world"          
         
